@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.overlapping-div { 
+
+  position: absolute; 
+
+  z-index: 100; /* Adjust the z-index value as needed */ 
+
+  text-align: left;
+
+}
