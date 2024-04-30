@@ -8,8 +8,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import BotonMovible from './Componentes/BotonMovible/BotonMovible';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const option = useSelector(state => state.option.value);
+  const goals = useSelector((state)=>state.goals.value);
+  const tasks = useSelector((state)=>state.tasks.value);
   return (
     <div className="App">
       <Menu/>
@@ -24,11 +28,15 @@ function App() {
           </Row>
           <Row>
             <div className='scrolling'>
-              <Item/>
-              <Item/>
-              <Item/>
-              <Item/>
-              <Item/>
+            {option === 'goals' ? (
+                  goals.map((goal, index) => (
+                    <Item key={index} name={goal.name} description={goal.description} dueDate={goal.dueDate} />
+                  ))
+                ) : (
+                  tasks.map((task, index) => (
+                    <Item key={index} name={task.name} description={task.description} dueDate={task.dueDate} />
+                  ))
+                )}
           </div>
           </Row>
         </Col>
@@ -41,3 +49,4 @@ function App() {
 }
 
 export default App;
+
