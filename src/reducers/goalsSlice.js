@@ -3,24 +3,43 @@ import {createSlice} from '@reduxjs/toolkit'
 export const goalsSlice = createSlice({
     name:'goals',
     initialState: {
-        value:[
-            {
-            'name':'Graduarme del TDS',
-            'description':'Ganar todos los cursos',
-            'dueDate':'01-12-2024'
-            }
-        ]
+        value:[],
     },
     reducers:{
         addGoal: (state, action) => {
+            console.log(action.payload);
             state.value.push(action.payload);
+            fetch("http://localhost:3001/goals/addGoals",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"cursodedesarollodeapliacionesweb"
+                },
+                body:JSON.stringify(action.payload)
+            }).catch((err)=>{
+                console.log(err);
+            })
+        },
+        initAddGoal: (state, action) => {
+            console.log(action.payload);
+            state.value.push(action.payload);
+
         },
         removeGoal: (state, action) => {
-            state.value.splice(action.payload, 1);
+            state.value = state.value.filter((task)=> task.id!==action.payload);
+            fetch("http://localhost:3001/goals/removeGoals/"+action.payload,{
+                method:"DELETE",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":"cursodedesarollodeapliacionesweb"
+                },
+            }).catch((err)=>{
+                console.log(err);
+            })
         }
     }
 })
 
 
-export const { addGoal, removeGoal } = goalsSlice.actions;
+export const { addGoal, removeGoal,initAddGoal  } = goalsSlice.actions;
 export default goalsSlice.reducer;

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addGoal } from '../../reducers/goalsSlice';
 import { addTask } from '../../reducers/tasksSlice';
 import { useRef } from 'react';
+import { current } from '@reduxjs/toolkit';
 
 function Formulario() {
   const inputRefName = useRef();
@@ -18,7 +19,8 @@ function Formulario() {
     const newItem = {
       'name': inputRefName.current.value,
       'description': inputRefDescription.current.value,
-      'dueDate': inputRefDueDate.current.value
+      'dueDate': inputRefDueDate.current.value,
+      
     };
 
     if (option === 'goals') {

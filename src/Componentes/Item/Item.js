@@ -12,9 +12,9 @@ function Item(props) {
 
   const handleDelete = () => {
     if (option === 'goals') {
-      dispatch(removeGoal(props.index));
+      dispatch(removeGoal(props.id));
     } else if (option === 'tasks') {
-      dispatch(removeTask(props.index));
+      dispatch(removeTask(props.id));
     }
   };
 
