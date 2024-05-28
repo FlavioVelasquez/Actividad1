@@ -1,6 +1,15 @@
 INSTRUCCIONES PARA CORRER EL PROYECTO:
-1.REALIZAR npm install#
+1.REALIZAR npm install
  Getting Started with Create React App
+
+
+2.PARA CORRER Docker:
+
+docker build -t docker-react-image:1.0 .
+
+despues hacer:
+docker run -p 4000:80 --name docker-react-container docker-react-image:1.0
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
